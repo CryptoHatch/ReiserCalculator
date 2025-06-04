@@ -26,10 +26,35 @@ st.markdown("""
         padding: 1rem;
         border-radius: 0.5rem;
     }
-    .tooltip {
+    /* Custom tooltip styles */
+    .tooltip-wrapper {
         position: relative;
         display: inline-block;
-        cursor: help;
+    }
+    .tooltip-wrapper .tooltip-content {
+        visibility: hidden;
+        background-color: #f0f2f6;
+        color: #31333F;
+        text-align: left;
+        padding: 8px 12px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        position: absolute;
+        z-index: 1;
+        width: 300px;
+        top: 100%;
+        left: 50%;
+        margin-left: -150px;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+    .tooltip-wrapper:hover .tooltip-content {
+        visibility: visible;
+        opacity: 1;
+    }
+    /* Custom metric styles */
+    div[data-testid="stMetricValue"] {
+        font-size: 1.8rem !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -430,49 +455,61 @@ hybrid = calculate_monthly_payments(
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.markdown("🏢💰 **Rent & Invest Strategy**")
-    with st.expander("ℹ️ Strategy Details"):
-        st.markdown(f"""
-        - Monthly budget: CHF {monthly_cap:,.0f}
-        - Monthly rent: CHF {monthly_rent:,.0f}
-        - Available for investment: CHF {pure_investment['Investment']:,.0f}
-        - No mortgage payments
-        - Maximum investment potential
-        - Highest flexibility & liquidity
-        """)
+    st.markdown(f"""
+        <div class="tooltip-wrapper">
+            🏢💰 <strong>Rent & Invest Strategy</strong>
+            <div class="tooltip-content">
+                • Monthly budget: CHF {monthly_cap:,.0f}<br>
+                • Monthly rent: CHF {monthly_rent:,.0f}<br>
+                • Available for investment: CHF {pure_investment['Investment']:,.0f}<br>
+                • No mortgage payments<br>
+                • Maximum investment potential<br>
+                • Highest flexibility & liquidity
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
 with col2:
-    st.markdown("🏠↘️ **Property Full Repayment Strategy**")
-    with st.expander("ℹ️ Strategy Details"):
-        st.markdown("""
-        - Monthly interest payment
-        - Maximum possible debt repayment
-        - Focus on mortgage reduction
-        - Lowest long-term interest cost
-        - No investment component
-        """)
+    st.markdown("""
+        <div class="tooltip-wrapper">
+            🏠↘️ <strong>Property Full Repayment Strategy</strong>
+            <div class="tooltip-content">
+                • Monthly interest payment<br>
+                • Maximum possible debt repayment<br>
+                • Focus on mortgage reduction<br>
+                • Lowest long-term interest cost<br>
+                • No investment component
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
 with col3:
-    st.markdown("🏠📈 **Property + Later Invest Strategy**")
-    with st.expander("ℹ️ Strategy Details"):
-        st.markdown("""
-        - Monthly interest payment
-        - Maximum repayment until target LTV
-        - Switches to investment after target
-        - Balanced approach to debt & investment
-        - Moderate flexibility after target LTV
-        """)
+    st.markdown("""
+        <div class="tooltip-wrapper">
+            🏠📈 <strong>Property + Later Invest Strategy</strong>
+            <div class="tooltip-content">
+                • Monthly interest payment<br>
+                • Maximum repayment until target LTV<br>
+                • Switches to investment after target<br>
+                • Balanced approach to debt & investment<br>
+                • Moderate flexibility after target LTV
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
 with col4:
-    st.markdown("🏠💼 **Property Min + Invest Strategy**")
-    with st.expander("ℹ️ Strategy Details"):
-        st.markdown("""
-        - Monthly interest payment
-        - Minimum required repayment
-        - Parallel investment from start
-        - Maximum investment potential
-        - Higher initial interest costs
-        """) 
+    st.markdown("""
+        <div class="tooltip-wrapper">
+            🏠💼 <strong>Property Min + Invest Strategy</strong>
+            <div class="tooltip-content">
+                • Monthly interest payment<br>
+                • Minimum required repayment<br>
+                • Parallel investment from start<br>
+                • Maximum investment potential<br>
+                • Higher initial interest costs
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
 # Display monthly payments table
 payment_data = {
@@ -536,6 +573,7 @@ if not pure_investment['Is_Sufficient']:
     """)
 
 # Final Values
+st.markdown("#### Final Values after 30 Years")
 col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric(

@@ -5,11 +5,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Format currency for Swiss Francs
+// Format currency for Swiss Francs (German formatting)
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat('de-CH', {
     style: 'currency',
     currency: 'CHF',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+// Format numbers with German/Swiss conventions
+export function formatNumber(amount: number): string {
+  return new Intl.NumberFormat('de-CH', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
@@ -37,7 +45,7 @@ export function debounce<T extends (...args: any[]) => any>(
   };
 }
 
-// Generate strategy recommendations
+// Generate strategy recommendations (German)
 export function generateRecommendations(params: {
   monthlyCap: number;
   flatPrice: number;
@@ -48,15 +56,15 @@ export function generateRecommendations(params: {
   const recommendations: string[] = [];
   
   if (params.monthlyCap < 0.004 * params.flatPrice) {
-    recommendations.push("⚠️ Monthly budget might be tight for property ownership. Consider a lower-priced property.");
+    recommendations.push("⚠️ Monatliches Budget könnte für Immobilieneigentum knapp sein. Erwägen Sie eine günstigere Immobilie.");
   }
   
   if (params.equity > 0.4 * params.flatPrice) {
-    recommendations.push("💡 High equity position - could consider investing excess above 20% requirement.");
+    recommendations.push("💡 Hohe Eigenkapitalposition - könnten Überschuss über 20%-Anforderung investieren.");
   }
   
   if (params.portfolioReturn > params.realEstateGrowth + 0.02) {
-    recommendations.push("📈 Expected investment returns significantly exceed real estate appreciation - consider allocating more to investments.");
+    recommendations.push("📈 Erwartete Investitionsrenditen übersteigen deutlich die Immobilien-Wertsteigerung - erwägen Sie mehr Allokation in Investitionen.");
   }
   
   return recommendations;

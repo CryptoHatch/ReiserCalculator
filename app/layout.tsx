@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Swiss Investment Strategy Simulator',
-  description: 'Compare different wealth-building strategies over 30 years for Swiss residents',
+  title: 'Schweizer Anlagestrategie-Simulator',
+  description: 'Vergleichen Sie verschiedene Vermögensaufbau-Strategien über 30 Jahre für Schweizer Einwohner',
   icons: {
     icon: '/favicon.ico',
   },
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="de">
       <body className={inter.className}>
         <div className="min-h-screen bg-background">
           {children}

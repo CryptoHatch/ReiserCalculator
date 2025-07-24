@@ -16,6 +16,8 @@ import {
 } from '@/lib/simulations'
 import { formatCurrency, formatPercentage, calculateCAGR, generateRecommendations } from '@/lib/utils'
 import { Slider } from '@/components/Slider'
+import { InfoTooltip } from '@/components/InfoTooltip'
+import { translations } from '@/lib/translations'
 
 export default function InvestmentSimulator() {
   // State for all configuration parameters
@@ -115,8 +117,8 @@ export default function InvestmentSimulator() {
               <span className="text-white font-bold text-lg">🇨🇭</span>
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Swiss Investment Strategy Simulator</h1>
-              <p className="text-gray-600 mt-1">Compare three wealth-building strategies over 30 years</p>
+              <h1 className="text-3xl font-bold text-gray-900">{translations.title}</h1>
+              <p className="text-gray-600 mt-1">{translations.subtitle}</p>
             </div>
           </div>
         </div>
@@ -129,7 +131,7 @@ export default function InvestmentSimulator() {
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5" />
-                Configuration
+                {translations.configuration}
               </h2>
               
               {/* Monthly Savings */}
@@ -140,14 +142,18 @@ export default function InvestmentSimulator() {
                 <Collapsible.Trigger className="flex items-center justify-between w-full p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                   <span className="font-medium flex items-center gap-2">
                     <Coins className="w-4 h-4" />
-                    Monthly Savings
+                    {translations.monthlySavings}
                   </span>
                   {expandedSections.monthlySavings ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                 </Collapsible.Trigger>
                 <Collapsible.Content className="mt-3 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Monthly Available Amount: {formatCurrency(monthlyCap)}
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.monthlyAmount}: {formatCurrency(monthlyCap)}
+                      <InfoTooltip
+                        title={translations.tooltips.monthlyAmount.title}
+                        content={translations.tooltips.monthlyAmount.content}
+                      />
                     </label>
                     <Slider
                       value={[monthlyCap]}
@@ -159,8 +165,12 @@ export default function InvestmentSimulator() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Monthly Apartment Rent: {formatCurrency(monthlyRent)}
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.monthlyRent}: {formatCurrency(monthlyRent)}
+                      <InfoTooltip
+                        title={translations.tooltips.monthlyRent.title}
+                        content={translations.tooltips.monthlyRent.content}
+                      />
                     </label>
                     <Slider
                       value={[monthlyRent]}
@@ -182,14 +192,18 @@ export default function InvestmentSimulator() {
                 <Collapsible.Trigger className="flex items-center justify-between w-full p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors mt-4">
                   <span className="font-medium flex items-center gap-2">
                     <Home className="w-4 h-4" />
-                    Property Details
+                    {translations.propertyDetails}
                   </span>
                   {expandedSections.propertyDetails ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                 </Collapsible.Trigger>
                 <Collapsible.Content className="mt-3 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Property Purchase Price: {formatCurrency(flatPrice)}
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.propertyPrice}: {formatCurrency(flatPrice)}
+                      <InfoTooltip
+                        title={translations.tooltips.propertyPrice.title}
+                        content={translations.tooltips.propertyPrice.content}
+                      />
                     </label>
                     <Slider
                       value={[flatPrice]}
@@ -201,8 +215,12 @@ export default function InvestmentSimulator() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Available Equity: {formatCurrency(equity)}
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.availableEquity}: {formatCurrency(equity)}
+                      <InfoTooltip
+                        title={translations.tooltips.availableEquity.title}
+                        content={translations.tooltips.availableEquity.content}
+                      />
                     </label>
                     <Slider
                       value={[equity]}
@@ -220,10 +238,10 @@ export default function InvestmentSimulator() {
                       <div className="flex items-start gap-2">
                         <AlertTriangle className="w-4 h-4 text-red-500 mt-0.5" />
                         <div className="text-sm">
-                          <p className="font-medium text-red-800">Swiss law requires minimum 20% equity!</p>
+                          <p className="font-medium text-red-800">{translations.swissEquityWarning}</p>
                           <p className="text-red-700 mt-1">
-                            Required: {formatCurrency(swissValidation.requiredEquity)}<br />
-                            Shortfall: {formatCurrency(swissValidation.shortfall)}
+                            {translations.requiredEquity}: {formatCurrency(swissValidation.requiredEquity)}<br />
+                            {translations.shortfall}: {formatCurrency(swissValidation.shortfall)}
                           </p>
                         </div>
                       </div>
@@ -240,14 +258,18 @@ export default function InvestmentSimulator() {
                 <Collapsible.Trigger className="flex items-center justify-between w-full p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors mt-4">
                   <span className="font-medium flex items-center gap-2">
                     <Building2 className="w-4 h-4" />
-                    Market Parameters
+                    {translations.marketParameters}
                   </span>
                   {expandedSections.marketParams ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                 </Collapsible.Trigger>
                 <Collapsible.Content className="mt-3 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Mortgage Interest Rate: {interestRate.toFixed(1)}%
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.mortgageRate}: {interestRate.toFixed(1)}%
+                      <InfoTooltip
+                        title={translations.tooltips.mortgageRate.title}
+                        content={translations.tooltips.mortgageRate.content}
+                      />
                     </label>
                     <Slider
                       value={[interestRate]}
@@ -259,8 +281,12 @@ export default function InvestmentSimulator() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Real Estate Appreciation: {realEstateGrowth.toFixed(1)}%
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.realEstateAppreciation}: {realEstateGrowth.toFixed(1)}%
+                      <InfoTooltip
+                        title={translations.tooltips.realEstateAppreciation.title}
+                        content={translations.tooltips.realEstateAppreciation.content}
+                      />
                     </label>
                     <Slider
                       value={[realEstateGrowth]}
@@ -282,14 +308,18 @@ export default function InvestmentSimulator() {
                 <Collapsible.Trigger className="flex items-center justify-between w-full p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors mt-4">
                   <span className="font-medium flex items-center gap-2">
                     <TrendingUp className="w-4 h-4" />
-                    Investment Portfolio
+                    {translations.investmentPortfolio}
                   </span>
                   {expandedSections.portfolio ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                 </Collapsible.Trigger>
                 <Collapsible.Content className="mt-3 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Stocks Allocation: {stockAlloc}%
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.stocksAllocation}: {stockAlloc}%
+                      <InfoTooltip
+                        title={translations.tooltips.stocksAllocation.title}
+                        content={translations.tooltips.stocksAllocation.content}
+                      />
                     </label>
                     <Slider
                       value={[stockAlloc]}
@@ -300,8 +330,15 @@ export default function InvestmentSimulator() {
                       className="w-full"
                     />
                   </div>
-                  <div className="bg-blue-50 p-3 rounded-lg">
-                    <p className="text-sm text-blue-800">₿ Bitcoin Allocation: {btcAlloc}%</p>
+                  <div className="bg-blue-50 p-3 rounded-lg flex items-center">
+                    <p className="text-sm text-blue-800 flex items-center">
+                      ₿ {translations.bitcoinAllocation}: {btcAlloc}%
+                      <InfoTooltip
+                        title={translations.tooltips.bitcoinAllocation.title}
+                        content={translations.tooltips.bitcoinAllocation.content}
+                        className="ml-2 bg-blue-200 text-blue-700 hover:bg-blue-300"
+                      />
+                    </p>
                   </div>
                 </Collapsible.Content>
               </Collapsible.Root>
@@ -312,13 +349,17 @@ export default function InvestmentSimulator() {
                 onOpenChange={() => toggleSection('returns')}
               >
                 <Collapsible.Trigger className="flex items-center justify-between w-full p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors mt-4">
-                  <span className="font-medium">Expected Returns</span>
+                  <span className="font-medium">{translations.expectedReturns}</span>
                   {expandedSections.returns ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                 </Collapsible.Trigger>
                 <Collapsible.Content className="mt-3 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Expected Stock Return: {stockReturn.toFixed(1)}%
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.stockReturn}: {stockReturn.toFixed(1)}%
+                      <InfoTooltip
+                        title={translations.tooltips.stockReturn.title}
+                        content={translations.tooltips.stockReturn.content}
+                      />
                     </label>
                     <Slider
                       value={[stockReturn]}
@@ -330,8 +371,12 @@ export default function InvestmentSimulator() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Expected Bitcoin Return: {btcReturn.toFixed(1)}%
+                    <label className="block text-sm font-medium mb-2 flex items-center">
+                      {translations.bitcoinReturn}: {btcReturn.toFixed(1)}%
+                      <InfoTooltip
+                        title={translations.tooltips.bitcoinReturn.title}
+                        content={translations.tooltips.bitcoinReturn.content}
+                      />
                     </label>
                     <Slider
                       value={[btcReturn]}
@@ -347,12 +392,12 @@ export default function InvestmentSimulator() {
 
               {/* Portfolio Summary */}
               <div className="mt-4 p-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border">
-                <h4 className="font-medium text-sm mb-2">📊 Portfolio Composition</h4>
+                <h4 className="font-medium text-sm mb-2">📊 {translations.portfolioComposition}</h4>
                 <div className="text-xs space-y-1">
-                  <div>📈 Stocks: {stockAlloc}% (Return: {stockReturn.toFixed(1)}%)</div>
-                  <div>₿ Bitcoin: {btcAlloc}% (Return: {btcReturn.toFixed(1)}%)</div>
+                  <div>📈 Aktien: {stockAlloc}% (Rendite: {stockReturn.toFixed(1)}%)</div>
+                  <div>₿ Bitcoin: {btcAlloc}% (Rendite: {btcReturn.toFixed(1)}%)</div>
                   <div className="font-medium pt-1 border-t">
-                    📈 Combined Portfolio Return: {formatPercentage(portfolioReturn)}
+                    📈 {translations.combinedPortfolioReturn}: {formatPercentage(portfolioReturn)}
                   </div>
                 </div>
               </div>
@@ -363,11 +408,11 @@ export default function InvestmentSimulator() {
                   <div className="flex items-start gap-2">
                     <AlertTriangle className="w-4 h-4 text-red-500 mt-0.5" />
                     <div className="text-sm">
-                      <p className="font-medium text-red-800">Insufficient Monthly Budget</p>
+                      <p className="font-medium text-red-800">{translations.insufficientBudget}</p>
                       <p className="text-red-700 mt-1">
-                        Required: {formatCurrency(minPayments.totalMinPayment)}<br />
-                        Your Budget: {formatCurrency(monthlyCap)}<br />
-                        Shortfall: {formatCurrency(minPayments.totalMinPayment - monthlyCap)}
+                        {translations.budgetRequired}: {formatCurrency(minPayments.totalMinPayment)}<br />
+                        {translations.yourBudget}: {formatCurrency(monthlyCap)}<br />
+                        {translations.shortfall}: {formatCurrency(minPayments.totalMinPayment - monthlyCap)}
                       </p>
                     </div>
                   </div>
@@ -380,50 +425,50 @@ export default function InvestmentSimulator() {
           <div className="lg:col-span-3 space-y-6">
             {/* Monthly Payment Breakdown */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold mb-4">💰 Monthly Payment Breakdown</h2>
+              <h2 className="text-xl font-semibold mb-4">💰 {translations.monthlyPaymentBreakdown}</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
-                  <h3 className="font-medium text-green-800 mb-2">🏢💰 Rent & Invest</h3>
+                  <h3 className="font-medium text-green-800 mb-2">{translations.strategies.rentInvest}</h3>
                   <div className="space-y-2 text-sm">
-                    <div>Investment: {formatCurrency(pureInvestmentPayments.investment)}</div>
-                    <div>Rent: {formatCurrency(monthlyRent)}</div>
+                    <div>{translations.investment}: {formatCurrency(pureInvestmentPayments.investment)}</div>
+                    <div>{translations.rent}: {formatCurrency(monthlyRent)}</div>
                     <div className="font-medium pt-2 border-t border-green-200">
-                      Total: {formatCurrency(monthlyCap)}
+                      {translations.total}: {formatCurrency(monthlyCap)}
                     </div>
                   </div>
                 </div>
 
                 <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
-                  <h3 className="font-medium text-blue-800 mb-2">🏠↘️ Full Repayment</h3>
+                  <h3 className="font-medium text-blue-800 mb-2">{translations.strategies.propertyFullRepay}</h3>
                   <div className="space-y-2 text-sm">
-                    <div>Interest: {formatCurrency(realEstatePayments.interest)}</div>
-                    <div>Amortization: {formatCurrency(realEstatePayments.amortization)}</div>
+                    <div>{translations.interest}: {formatCurrency(realEstatePayments.interest)}</div>
+                    <div>{translations.amortization}: {formatCurrency(realEstatePayments.amortization)}</div>
                     <div className="font-medium pt-2 border-t border-blue-200">
-                      Total: {formatCurrency(realEstatePayments.interest + realEstatePayments.amortization)}
+                      {translations.total}: {formatCurrency(realEstatePayments.interest + realEstatePayments.amortization)}
                     </div>
                   </div>
                 </div>
 
                 <div className="p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border border-orange-200">
-                  <h3 className="font-medium text-orange-800 mb-2">🏠📈 Later Invest</h3>
+                  <h3 className="font-medium text-orange-800 mb-2">{translations.strategies.propertyLaterInvest}</h3>
                   <div className="space-y-2 text-sm">
-                    <div>Interest: {formatCurrency(realEstatePayments.interest)}</div>
-                    <div>Amortization: {formatCurrency(realEstatePayments.amortization)}</div>
+                    <div>{translations.interest}: {formatCurrency(realEstatePayments.interest)}</div>
+                    <div>{translations.amortization}: {formatCurrency(realEstatePayments.amortization)}</div>
                     <div className="font-medium pt-2 border-t border-orange-200">
-                      Total: {formatCurrency(realEstatePayments.interest + realEstatePayments.amortization)}
+                      {translations.total}: {formatCurrency(realEstatePayments.interest + realEstatePayments.amortization)}
                     </div>
                   </div>
                 </div>
 
                 <div className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200">
-                  <h3 className="font-medium text-purple-800 mb-2">🏠💼 Min + Invest</h3>
+                  <h3 className="font-medium text-purple-800 mb-2">{translations.strategies.propertyMinInvest}</h3>
                   <div className="space-y-2 text-sm">
-                    <div>Interest: {formatCurrency(hybridPayments.interest)}</div>
-                    <div>Amortization: {formatCurrency(hybridPayments.amortization)}</div>
-                    <div>Investment: {formatCurrency(hybridPayments.investment)}</div>
+                    <div>{translations.interest}: {formatCurrency(hybridPayments.interest)}</div>
+                    <div>{translations.amortization}: {formatCurrency(hybridPayments.amortization)}</div>
+                    <div>{translations.investment}: {formatCurrency(hybridPayments.investment)}</div>
                     <div className="font-medium pt-2 border-t border-purple-200">
-                      Total: {formatCurrency(hybridPayments.interest + hybridPayments.amortization + hybridPayments.investment)}
+                      {translations.total}: {formatCurrency(hybridPayments.interest + hybridPayments.amortization + hybridPayments.investment)}
                     </div>
                   </div>
                 </div>
@@ -458,38 +503,38 @@ export default function InvestmentSimulator() {
 
             {/* Final Values */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold mb-4">📊 Final Values after 30 Years</h2>
+              <h2 className="text-xl font-semibold mb-4">📊 {translations.finalValuesAfter30Years}</h2>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-green-50 rounded-lg">
                   <div className="text-2xl font-bold text-green-600">
                     {formatCurrency(investmentProgression[29])}
                   </div>
-                  <div className="text-sm text-green-700 mt-1">🏢💰 Rent & Invest</div>
+                  <div className="text-sm text-green-700 mt-1">{translations.strategies.rentInvest}</div>
                 </div>
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600">
                     {formatCurrency(realEstateMaxAmort.progression[29])}
                   </div>
-                  <div className="text-sm text-blue-700 mt-1">🏠↘️ Full Repayment</div>
+                  <div className="text-sm text-blue-700 mt-1">{translations.strategies.propertyFullRepay}</div>
                 </div>
                 <div className="text-center p-4 bg-orange-50 rounded-lg">
                   <div className="text-2xl font-bold text-orange-600">
                     {formatCurrency(realEstateInvest.progression[29])}
                   </div>
-                  <div className="text-sm text-orange-700 mt-1">🏠📈 Later Invest</div>
+                  <div className="text-sm text-orange-700 mt-1">{translations.strategies.propertyLaterInvest}</div>
                 </div>
                 <div className="text-center p-4 bg-purple-50 rounded-lg">
                   <div className="text-2xl font-bold text-purple-600">
                     {formatCurrency(hybridProgression.progression[29])}
                   </div>
-                  <div className="text-sm text-purple-700 mt-1">🏠💼 Min + Invest</div>
+                  <div className="text-sm text-purple-700 mt-1">{translations.strategies.propertyMinInvest}</div>
                 </div>
               </div>
             </div>
 
             {/* Net Worth Progression Chart */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold mb-4">📉 Net Worth Progression Over Time</h2>
+              <h2 className="text-xl font-semibold mb-4">📉 {translations.netWorthProgression}</h2>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartData}>
@@ -503,14 +548,14 @@ export default function InvestmentSimulator() {
                       dataKey="rentInvest" 
                       stroke="#10b981" 
                       strokeWidth={2}
-                      name="🏢💰 Rent & Invest"
+                      name={translations.strategies.rentInvest}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="propertyFullRepay" 
                       stroke="#3b82f6" 
                       strokeWidth={2}
-                      name="🏠↘️ Full Repayment"
+                      name={translations.strategies.propertyFullRepay}
                     />
                     <Line 
                       type="monotone" 
@@ -518,14 +563,14 @@ export default function InvestmentSimulator() {
                       stroke="#f97316" 
                       strokeWidth={2}
                       strokeDasharray="5 5"
-                      name="🏠📈 Later Invest"
+                      name={translations.strategies.propertyLaterInvest}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="propertyMinInvest" 
                       stroke="#8b5cf6" 
                       strokeWidth={2}
-                      name="🏠💼 Min + Invest"
+                      name={translations.strategies.propertyMinInvest}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -534,35 +579,35 @@ export default function InvestmentSimulator() {
 
             {/* Key Metrics */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold mb-4">💡 Strategy Insights</h2>
+              <h2 className="text-xl font-semibold mb-4">💡 {translations.strategyInsights}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-medium mb-3">Annual Growth Rates (CAGR)</h3>
+                  <h3 className="font-medium mb-3">{translations.annualGrowthRates}</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Rent & Invest:</span>
+                      <span>Mieten & Investieren:</span>
                       <span className="font-medium">{formatPercentage(calculateCAGR(equity, investmentProgression[29], 30))}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Full Repayment:</span>
+                      <span>Vollständige Rückzahlung:</span>
                       <span className="font-medium">{formatPercentage(calculateCAGR(equity, realEstateMaxAmort.progression[29], 30))}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Later Invest:</span>
+                      <span>Später Investieren:</span>
                       <span className="font-medium">{formatPercentage(calculateCAGR(equity, realEstateInvest.progression[29], 30))}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Min + Invest:</span>
+                      <span>Min + Investieren:</span>
                       <span className="font-medium">{formatPercentage(calculateCAGR(equity, hybridProgression.progression[29], 30))}</span>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-medium mb-3">Risk Considerations</h3>
+                  <h3 className="font-medium mb-3">{translations.riskConsiderations}</h3>
                   <div className="space-y-2 text-sm">
-                    <div>📈 <strong>Rent & Invest:</strong> Highest liquidity, market volatility exposure</div>
-                    <div>🏠 <strong>Full Repayment:</strong> Lowest liquidity, stable housing costs</div>
-                    <div>🏠💼 <strong>Min + Invest:</strong> Balanced approach, diversified risk</div>
+                    <div>📈 <strong>Mieten & Investieren:</strong> {translations.riskDescriptions.rentInvest}</div>
+                    <div>🏠 <strong>Vollständige Rückzahlung:</strong> {translations.riskDescriptions.propertyFullRepay}</div>
+                    <div>🏠💼 <strong>Min + Investieren:</strong> {translations.riskDescriptions.propertyMinInvest}</div>
                   </div>
                 </div>
               </div>
@@ -570,8 +615,8 @@ export default function InvestmentSimulator() {
 
             {/* Strategy Recommendations */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold mb-4">🎯 Strategy Recommendations</h2>
-              <p className="text-gray-600 mb-4">Based on your inputs, here are some key considerations:</p>
+              <h2 className="text-xl font-semibold mb-4">🎯 {translations.strategyRecommendations}</h2>
+              <p className="text-gray-600 mb-4">Basierend auf Ihren Eingaben, hier sind einige wichtige Überlegungen:</p>
               
               {recommendations.length > 0 ? (
                 <div className="space-y-2">
@@ -595,7 +640,7 @@ export default function InvestmentSimulator() {
             {/* Disclaimer */}
             <div className="bg-gray-50 border rounded-lg p-4 text-sm text-gray-600">
               <p>
-                <strong>Disclaimer:</strong> This simulation is for educational purposes only. Actual results may vary significantly based on market conditions, tax implications, and other factors not considered in this model. Please consult with financial and real estate professionals before making investment decisions.
+                <strong>{translations.disclaimerTitle}:</strong> {translations.disclaimerText}
               </p>
             </div>
           </div>

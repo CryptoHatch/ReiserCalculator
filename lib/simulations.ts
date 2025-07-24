@@ -153,7 +153,7 @@ export function simulateRealEstateStrategy(
     const interest = balance * interestRate;
     
     // Calculate current LTV
-    const currentLtv = balance / propertyValue;
+    const currentLtv = propertyValue > 0 ? balance / propertyValue : 0;
     
     // Available for amortization after interest
     const availableForAmort = monthlyBudget * 12 - interest;
@@ -213,33 +213,38 @@ export function simulateHybridStrategy(
     const interest = balance * interestRate;
     
     // Calculate current LTV
-    const currentLtv = balance / propertyValue;
+    const currentLtv = propertyValue > 0 ? balance / propertyValue : 0;
     
     // Monthly calculations
     const monthlyInterest = interest / 12;
+    let monthlyMinAmort = 0;
+    let monthlyInvestment = 0;
     
     if (balance === 0) {
       // Property fully paid off - invest all monthly budget
-      const monthlyInvestment = monthlyBudget;
-      investmentValue = investmentValue * (1 + portfolioReturn) + (monthlyInvestment * 12);
-      if (payoffYear === undefined) {
-        payoffYear = year + 1;
-      }
+      monthlyMinAmort = 0;
+      monthlyInvestment = monthlyBudget;
     } else if (currentLtv > targetLtv && year < amortYears) {
       // Only amortize if above target LTV
-      const monthlyMinAmort = minAmortPerYear / 12;
-      const monthlyInvestment = Math.max(0, monthlyBudget - monthlyInterest - monthlyMinAmort);
+      monthlyMinAmort = minAmortPerYear / 12;
+      monthlyInvestment = Math.max(0, monthlyBudget - monthlyInterest - monthlyMinAmort);
       balance -= minAmortPerYear;
       
-      // Grow investments
-      investmentValue = investmentValue * (1 + portfolioReturn) + (monthlyInvestment * 12);
+      // Check if we just paid off the property
+      if (balance === 0 && payoffYear === undefined) {
+        payoffYear = year + 1;
+      }
     } else {
       // If target LTV reached, all excess goes to investment
-      const monthlyInvestment = Math.max(0, monthlyBudget - monthlyInterest);
-      investmentValue = investmentValue * (1 + portfolioReturn) + (monthlyInvestment * 12);
+      monthlyMinAmort = 0;
+      monthlyInvestment = Math.max(0, monthlyBudget - monthlyInterest);
     }
     
     balance = Math.max(0, balance);
+    
+    // Grow investments (applied once per year at the end, like Python version)
+    investmentValue = investmentValue * (1 + portfolioReturn) + (monthlyInvestment * 12);
+    
     netWorth.push(propertyValue - balance + investmentValue);
   }
   
@@ -279,7 +284,7 @@ export function calculateLtvProgression(
     const monthlyInterest = balance * interestRate / 12;
     
     // Calculate current LTV
-    const currentLtv = balance / propertyValue;
+    const currentLtv = propertyValue > 0 ? balance / propertyValue : 0;
     
     // Determine amortization based on strategy
     let monthlyAmort = 0;

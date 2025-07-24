@@ -429,7 +429,13 @@ export default function InvestmentSimulator() {
               
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
-                  <h3 className="font-medium text-green-800 mb-2">{translations.strategies.rentInvest}</h3>
+                  <h3 className="font-medium text-green-800 mb-2 flex items-center">
+                    {translations.strategies.rentInvest}
+                    <InfoTooltip
+                      title={translations.strategyExplanations.rentInvest.title}
+                      content={translations.strategyExplanations.rentInvest.content}
+                    />
+                  </h3>
                   <div className="space-y-2 text-sm">
                     <div>{translations.investment}: {formatCurrency(pureInvestmentPayments.investment)}</div>
                     <div>{translations.rent}: {formatCurrency(monthlyRent)}</div>
@@ -440,7 +446,13 @@ export default function InvestmentSimulator() {
                 </div>
 
                 <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
-                  <h3 className="font-medium text-blue-800 mb-2">{translations.strategies.propertyFullRepay}</h3>
+                  <h3 className="font-medium text-blue-800 mb-2 flex items-center">
+                    {translations.strategies.propertyFullRepay}
+                    <InfoTooltip
+                      title={translations.strategyExplanations.propertyFullRepay.title}
+                      content={translations.strategyExplanations.propertyFullRepay.content}
+                    />
+                  </h3>
                   <div className="space-y-2 text-sm">
                     <div>{translations.interest}: {formatCurrency(realEstatePayments.interest)}</div>
                     <div>{translations.amortization}: {formatCurrency(realEstatePayments.amortization)}</div>
@@ -451,7 +463,13 @@ export default function InvestmentSimulator() {
                 </div>
 
                 <div className="p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border border-orange-200">
-                  <h3 className="font-medium text-orange-800 mb-2">{translations.strategies.propertyLaterInvest}</h3>
+                  <h3 className="font-medium text-orange-800 mb-2 flex items-center">
+                    {translations.strategies.propertyLaterInvest}
+                    <InfoTooltip
+                      title={translations.strategyExplanations.propertyLaterInvest.title}
+                      content={translations.strategyExplanations.propertyLaterInvest.content}
+                    />
+                  </h3>
                   <div className="space-y-2 text-sm">
                     <div>{translations.interest}: {formatCurrency(realEstatePayments.interest)}</div>
                     <div>{translations.amortization}: {formatCurrency(realEstatePayments.amortization)}</div>
@@ -462,7 +480,13 @@ export default function InvestmentSimulator() {
                 </div>
 
                 <div className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200">
-                  <h3 className="font-medium text-purple-800 mb-2">{translations.strategies.propertyMinInvest}</h3>
+                  <h3 className="font-medium text-purple-800 mb-2 flex items-center">
+                    {translations.strategies.propertyMinInvest}
+                    <InfoTooltip
+                      title={translations.strategyExplanations.propertyMinInvest.title}
+                      content={translations.strategyExplanations.propertyMinInvest.content}
+                    />
+                  </h3>
                   <div className="space-y-2 text-sm">
                     <div>{translations.interest}: {formatCurrency(hybridPayments.interest)}</div>
                     <div>{translations.amortization}: {formatCurrency(hybridPayments.amortization)}</div>
@@ -509,25 +533,53 @@ export default function InvestmentSimulator() {
                   <div className="text-2xl font-bold text-green-600">
                     {formatCurrency(investmentProgression[29])}
                   </div>
-                  <div className="text-sm text-green-700 mt-1">{translations.strategies.rentInvest}</div>
+                  <div className="text-sm text-green-700 mt-1 flex items-center justify-center">
+                    {translations.strategies.rentInvest}
+                    <InfoTooltip
+                      title={translations.strategyExplanations.rentInvest.title}
+                      content={translations.strategyExplanations.rentInvest.content}
+                      className="ml-1 bg-green-100 text-green-600 hover:bg-green-200"
+                    />
+                  </div>
                 </div>
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600">
                     {formatCurrency(realEstateMaxAmort.progression[29])}
                   </div>
-                  <div className="text-sm text-blue-700 mt-1">{translations.strategies.propertyFullRepay}</div>
+                  <div className="text-sm text-blue-700 mt-1 flex items-center justify-center">
+                    {translations.strategies.propertyFullRepay}
+                    <InfoTooltip
+                      title={translations.strategyExplanations.propertyFullRepay.title}
+                      content={translations.strategyExplanations.propertyFullRepay.content}
+                      className="ml-1 bg-blue-100 text-blue-600 hover:bg-blue-200"
+                    />
+                  </div>
                 </div>
                 <div className="text-center p-4 bg-orange-50 rounded-lg">
                   <div className="text-2xl font-bold text-orange-600">
                     {formatCurrency(realEstateInvest.progression[29])}
                   </div>
-                  <div className="text-sm text-orange-700 mt-1">{translations.strategies.propertyLaterInvest}</div>
+                  <div className="text-sm text-orange-700 mt-1 flex items-center justify-center">
+                    {translations.strategies.propertyLaterInvest}
+                    <InfoTooltip
+                      title={translations.strategyExplanations.propertyLaterInvest.title}
+                      content={translations.strategyExplanations.propertyLaterInvest.content}
+                      className="ml-1 bg-orange-100 text-orange-600 hover:bg-orange-200"
+                    />
+                  </div>
                 </div>
                 <div className="text-center p-4 bg-purple-50 rounded-lg">
                   <div className="text-2xl font-bold text-purple-600">
                     {formatCurrency(hybridProgression.progression[29])}
                   </div>
-                  <div className="text-sm text-purple-700 mt-1">{translations.strategies.propertyMinInvest}</div>
+                  <div className="text-sm text-purple-700 mt-1 flex items-center justify-center">
+                    {translations.strategies.propertyMinInvest}
+                    <InfoTooltip
+                      title={translations.strategyExplanations.propertyMinInvest.title}
+                      content={translations.strategyExplanations.propertyMinInvest.content}
+                      className="ml-1 bg-purple-100 text-purple-600 hover:bg-purple-200"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -535,6 +587,58 @@ export default function InvestmentSimulator() {
             {/* Net Worth Progression Chart */}
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h2 className="text-xl font-semibold mb-4">📉 {translations.netWorthProgression}</h2>
+              
+              {/* Custom Legend with InfoTooltips */}
+              <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                <h3 className="text-sm font-medium text-gray-700 mb-3">Strategien:</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="flex items-center">
+                    <div className="w-4 h-0.5 bg-green-500 mr-3"></div>
+                    <span className="text-sm flex items-center">
+                      {translations.strategies.rentInvest}
+                      <InfoTooltip
+                        title={translations.strategyExplanations.rentInvest.title}
+                        content={translations.strategyExplanations.rentInvest.content}
+                        className="ml-1 bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      />
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-4 h-0.5 bg-blue-500 mr-3"></div>
+                    <span className="text-sm flex items-center">
+                      {translations.strategies.propertyFullRepay}
+                      <InfoTooltip
+                        title={translations.strategyExplanations.propertyFullRepay.title}
+                        content={translations.strategyExplanations.propertyFullRepay.content}
+                        className="ml-1 bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      />
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-4 h-0.5 bg-orange-500 mr-3 border-dashed border-t-2 border-orange-500 bg-transparent"></div>
+                    <span className="text-sm flex items-center">
+                      {translations.strategies.propertyLaterInvest}
+                      <InfoTooltip
+                        title={translations.strategyExplanations.propertyLaterInvest.title}
+                        content={translations.strategyExplanations.propertyLaterInvest.content}
+                        className="ml-1 bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      />
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-4 h-0.5 bg-purple-500 mr-3"></div>
+                    <span className="text-sm flex items-center">
+                      {translations.strategies.propertyMinInvest}
+                      <InfoTooltip
+                        title={translations.strategyExplanations.propertyMinInvest.title}
+                        content={translations.strategyExplanations.propertyMinInvest.content}
+                        className="ml-1 bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartData}>
@@ -542,7 +646,6 @@ export default function InvestmentSimulator() {
                     <XAxis dataKey="year" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
                     <Tooltip formatter={(value) => formatCurrency(Number(value))} />
-                    <Legend />
                     <Line 
                       type="monotone" 
                       dataKey="rentInvest" 
@@ -585,19 +688,47 @@ export default function InvestmentSimulator() {
                   <h3 className="font-medium mb-3">{translations.annualGrowthRates}</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Mieten & Investieren:</span>
+                      <span className="flex items-center">
+                        Mieten & Investieren:
+                        <InfoTooltip
+                          title={translations.strategyExplanations.rentInvest.title}
+                          content={translations.strategyExplanations.rentInvest.content}
+                          className="ml-1 bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        />
+                      </span>
                       <span className="font-medium">{formatPercentage(calculateCAGR(equity, investmentProgression[29], 30))}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Vollständige Rückzahlung:</span>
+                      <span className="flex items-center">
+                        Vollständige Rückzahlung:
+                        <InfoTooltip
+                          title={translations.strategyExplanations.propertyFullRepay.title}
+                          content={translations.strategyExplanations.propertyFullRepay.content}
+                          className="ml-1 bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        />
+                      </span>
                       <span className="font-medium">{formatPercentage(calculateCAGR(equity, realEstateMaxAmort.progression[29], 30))}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Später Investieren:</span>
+                      <span className="flex items-center">
+                        Später Investieren:
+                        <InfoTooltip
+                          title={translations.strategyExplanations.propertyLaterInvest.title}
+                          content={translations.strategyExplanations.propertyLaterInvest.content}
+                          className="ml-1 bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        />
+                      </span>
                       <span className="font-medium">{formatPercentage(calculateCAGR(equity, realEstateInvest.progression[29], 30))}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Min + Investieren:</span>
+                      <span className="flex items-center">
+                        Min + Investieren:
+                        <InfoTooltip
+                          title={translations.strategyExplanations.propertyMinInvest.title}
+                          content={translations.strategyExplanations.propertyMinInvest.content}
+                          className="ml-1 bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        />
+                      </span>
                       <span className="font-medium">{formatPercentage(calculateCAGR(equity, hybridProgression.progression[29], 30))}</span>
                     </div>
                   </div>

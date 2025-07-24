@@ -11,6 +11,123 @@ export const translations = {
     propertyMinInvest: "🏠💼 Min. + Investieren"
   },
 
+  // Detailed strategy explanations  
+  strategyExplanations: {
+    rentInvest: {
+      title: "Mieten & Investieren Strategie",
+      content: `**Konzept**: Sie mieten eine Wohnung und investieren Ihr gesamtes verfügbares Kapital in Finanzinstrumente.
+
+**Cashflow-Mechanik**:
+• Monatliche Mietzahlung für Wohnraum
+• Restliches Budget (Gesamtbudget - Miete) wird sofort investiert
+• Keine Immobilienschulden oder -eigentum
+• Maximale Investitionsquote vom ersten Tag an
+
+**Vorteile**:
+✅ **Höchste Liquidität**: Jederzeit Zugang zu Investitionen
+✅ **Maximale Marktexposition**: Gesamtes Kapital arbeitet sofort
+✅ **Flexibilität**: Einfacher Umzug, keine Eigentumsverantwortung
+✅ **Diversifikation**: Globale Märkte statt lokaler Immobilienmarkt
+
+**Risiken**:
+⚠️ **Mietrisiko**: Steigende Mieten reduzieren Investitionskapital
+⚠️ **Marktvolatilität**: Vollexposition gegenüber Marktschwankungen
+⚠️ **Kein Wohneigentum**: Keine Absicherung gegen Mieterhöhungen
+
+**Optimal wenn**: Hohe erwartete Kapitalmarktrenditen, flexible Lebenssituation, hohe Risikotoleranz.`
+    },
+    propertyFullRepay: {
+      title: "Vollständige Rückzahlung Strategie", 
+      content: `**Konzept**: Kaufen Sie eine Immobilie und tilgen die Hypothek so schnell wie möglich mit maximalem Kapitaleinsatz.
+
+**Cashflow-Mechanik**:
+• 20%+ Eigenkapital beim Kauf (Schweizer Mindestanforderung)
+• Gesamtes monatliches Budget für Zinsen + maximale Tilgung
+• Keine parallel Investitionen bis Hypothek abbezahlt
+• Nach vollständiger Tilgung: Gesamtbudget wird investiert
+
+**Schweizer Regulierung**:
+🇨🇭 Bei LTV > 66.7%: Amortisation auf 66.7% in 15 Jahren erforderlich
+🇨🇭 Diese Strategie geht oft darüber hinaus für schnellste Schuldenfreiheit
+
+**Vorteile**:
+✅ **Garantierte "Rendite"**: Zinsersparnis entspricht sicherer Rendite
+✅ **Schuldenfreiheit**: Psychologische Sicherheit und reduzierte Fixkosten
+✅ **Wohneigentum**: Schutz vor Mieterhöhungen, Eigentumsrechte
+✅ **Reduziertes Risiko**: Keine Leverage, stabile Wohnkosten
+
+**Nachteile**:
+⚠️ **Niedrige Liquidität**: Kapital in Immobilie "gefangen"
+⚠️ **Opportunity Cost**: Mögliche höhere Renditen am Kapitalmarkt verpasst
+⚠️ **Konzentration**: Vermögen konzentriert auf lokalen Immobilienmarkt
+
+**Optimal wenn**: Niedrige Risikotoleranz, hohe Hypothekenzinsen, Wunsch nach Schuldenfreiheit.`
+    },
+    propertyLaterInvest: {
+      title: "Später Investieren Strategie",
+      content: `**Konzept**: Identisch mit "Vollständige Rückzahlung", aber mit expliziter Betonung der Post-Tilgungs-Investitionsphase.
+
+**Phasen-Ansatz**:
+**Phase 1 (Jahre 1-X)**: Maximale Hypothekentilgung
+• Gesamtes Budget für Zinsen + Tilgung
+• Fokus auf schnellstmögliche Schuldenbefreiung
+• Keine parallelen Investitionen
+
+**Phase 2 (Jahre X-30)**: Intensive Investitionsphase  
+• Hypothek vollständig getilgt
+• Gesamtes früheres Tilgungsbudget wird investiert
+• Compound-Effekt auf verbleibendem Zeitraum
+
+**Mathematische Überlegung**:
+• Späteren Investitionsstart, aber höhere monatliche Beträge
+• "Backloaded" Vermögensaufbau vs. gleichmäßige Verteilung
+• Timing-Risiko: Marktperformance in späteren Jahren kritischer
+
+**Psychologische Komponente**:
+🧠 **Zwei-Phasen-Mentalität**: Erst Schulden eliminieren, dann Vermögen aufbauen
+🧠 **Sicherheitsgefühl**: Klare Trennung zwischen Verschuldung und Investition
+
+**Unterschied zu anderen Strategien**:
+• **vs. Vollständige Rückzahlung**: Identisch, nur andere Darstellung
+• **vs. Min. + Investieren**: Sequenziell statt parallel
+• **vs. Mieten & Investieren**: Eigentum + verzögerte Investitionen
+
+**Optimal wenn**: Präferenz für klare Phasen, Aversion gegen Schulden während Investitionen.`
+    },
+    propertyMinInvest: {
+      title: "Minimum + Investieren Strategie",
+      content: `**Konzept**: Kaufen Sie eine Immobilie und machen nur gesetzlich erforderliche Mindestzahlungen, während Sie parallel investieren.
+
+**Schweizer Regulatory Framework**:
+🇨🇭 **20% Eigenkapital**: Gesetzliches Minimum beim Kauf
+🇨🇭 **66.7% LTV-Regel**: Amortisation auf 66.7% LTV in 15 Jahren erforderlich
+🇩🇪 **Zinsabzug**: Hypothekenzinsen steuerlich absetzbar
+
+**Cashflow-Aufteilung**:
+• **Zinszahlungen**: (Hypothekensaldo × Zinssatz) ÷ 12
+• **Minimum-Amortisation**: Nur soviel wie nötig für 66.7% LTV in 15 Jahren  
+• **Investitionen**: Verbleibendes Budget sofort in Portfolio
+
+**Leverage-Mechanik**:
+📈 **Positive Leverage**: Wenn Investitionsrendite > Hypothekenzins
+📉 **Negative Leverage**: Wenn Investitionsrendite < Hypothekenzins
+⚖️ **Break-Even**: Rendite = Zinssatz (nach Steuern)
+
+**Vorteile**:
+✅ **Balanced Approach**: Sowohl Immobilien- als auch Kapitalmarktexposition
+✅ **Sofortige Investitionen**: Kein verlorener Compound-Effekt
+✅ **Steueroptimierung**: Zinsabzug reduziert effektive Finanzierungskosten
+✅ **Diversifikation**: Vermögen auf mehrere Anlageklassen verteilt
+
+**Risiken**:
+⚠️ **Sequence Risk**: Schlechte frühe Marktjahre besonders schädlich
+⚠️ **Leverage Risk**: Verluste werden durch Schulden verstärkt
+⚠️ **Komplexität**: Sowohl Immobilien- als auch Marktrisiko
+
+**Optimal wenn**: Erwartete Investitionsrendite > Hypothekenzins, moderate Risikotoleranz, steuerliche Optimierung gewünscht.`
+    }
+  },
+
   // Configuration sections
   configuration: "Konfiguration",
   monthlySavings: "Monatliche Ersparnisse",
